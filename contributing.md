@@ -1,81 +1,65 @@
-Contributing to SPL
+# Contributing to SPL
 
-Thank you for your interest in contributing to Subsumption Pattern Learning (SPL)!
+We welcome contributions to Subsumption Pattern Learning! This document provides guidelines and instructions for contributing.
+
+## How to Contribute
+
+### Reporting Issues
+- Use GitHub Issues for bug reports and feature requests
+- Include clear description, steps to reproduce, and expected behavior
+- Add relevant labels (bug, enhancement, documentation, etc.)
+
+### Pull Requests
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Make your changes
+4. Write or update tests
+5. Update documentation if needed
+6. Submit PR with clear description
+
+### Code Style
+- Follow PEP 8 guidelines
+- Use type hints for functions
+- Add docstrings to classes and functions
+- Keep functions focused and testable
+
+### Testing
+- Write unit tests for new features
+- Run `pytest tests/` before submitting
+- Aim for >80% code coverage
+- Test with multiple Python versions (3.8+)
+
+### Documentation
+- Update README.md for user-facing changes
+- Add docstrings following Google style
+- Update ARCHITECTURE.md for architecture changes
+- Add examples for new features
 
 ## Development Setup
 
-### 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/spl-framework.git
-cd spl-framework
-### 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-### 3. Install dependencies
-pip install -r requirements.txt
-pip install -e .  # Install in editable mode
-### 4. Run tests
+```bash
+# Clone and install
+git clone https://github.com/daseinpbc/SPL-FRAMEWORK.git
+cd SPL-FRAMEWORK
+pip install -e ".[dev]"
+
+# Run tests
 pytest tests/
-## Code Style
 
-We follow Python best practices:
+# Code quality checks
+black spl/
+flake8 spl/
+mypy spl/
+```
 
-- **Formatting:** Black (line length 100)
-- **Linting:** Flake8
-- **Type hints:** MyPy
-
-Run before committing:
-black .
-flake8 .
-mypy src/
-## Testing
-
-- All new features must include tests
-- Maintain >80% code coverage
-- Tests should be fast (<1s per test)
-Run all testspytestRun with coveragepytest --cov=spl_framework tests/
-## Commit Messages
-
-Follow conventional commits:
-feat: Add new pattern learning algorithm
-fix: Correct Layer 1 confidence calculation
-docs: Update integration guide
-test: Add tests for multi-agent coordination
-## Pull Request Process
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests
-5. Run tests and linting
-6. Commit your changes
-7. Push to your fork
-8. Open a Pull Request
-
-## Areas for Contribution
-
-We welcome contributions in:
-
-- **Pattern extraction algorithms:** Better learning from LLM decisions
-- **Performance optimizations:** Faster pattern matching
-- **LLM integrations:** Support for more providers
-- **Multi-agent coordination:** Advanced state sharing
-- **Documentation:** Examples, tutorials, guides
-- **Benchmarks:** New domains and use cases
+## Release Process
+1. Update version in `setup.py`
+2. Update `CHANGELOG.md`
+3. Create git tag
+4. Push to PyPI
 
 ## Questions?
+- Open a discussion on GitHub
+- Email: PAMELA@dasein.works
 
-Open an issue or contact:
-- Email: pamela@dasein.works
-
-
-## Code of Conduct
-
-- Be respectful and inclusive
-- Focus on constructive feedback
-- Help others learn and grow
-- Keep discussions professional
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
-
+Thank you for contributing!
