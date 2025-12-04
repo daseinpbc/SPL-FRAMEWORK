@@ -509,8 +509,12 @@ SPL builds on decades of foundational research:
 
 - **Ronald C. Arkin** — Behavior-based robotics and reactive schema theory
 - **Rodney A. Brooks** — Subsumption architecture (MIT Media Lab)
+- Pfeiffer and Schier 
 - **Anthropic** — Model Context Protocol (MCP)
 - **The open source community** — Foundation model APIs, MCP protocol, Python ecosystem
+- inspiration from vassar: P&A/K&C long/broude
+
+  
 
 ---
 
