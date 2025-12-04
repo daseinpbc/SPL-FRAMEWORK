@@ -148,7 +148,7 @@ class TestLayer1Tactical:
 
     def test_shared_state_pattern_learning(self):
         """Test that learned patterns are shared via shared_state."""
-        # Use a non-empty initial shared_state to avoid the `or {}` issue
+        # Provide an initial value to ensure shared_state reference is preserved
         shared_state = {'initial': True}
         layer1 = Layer1Tactical(shared_state=shared_state)
         result = layer1.learn_pattern(
@@ -157,7 +157,7 @@ class TestLayer1Tactical:
             confidence=0.95,
             learned_by='agent_a'
         )
-        # Pattern should be learned since confidence >= 0.90
+        # Pattern should be learned since confidence >= 0.90 (minimum threshold for learning)
         assert result is not None
         # Check that learned_patterns was added to the layer's shared_state
         assert 'learned_patterns' in layer1.shared_state
