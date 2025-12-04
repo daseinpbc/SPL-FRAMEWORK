@@ -17,11 +17,19 @@ Performance and cost data for the SPL Framework.
 
 ## Scaling Dynamics
 
+The table below illustrates how costs decrease over time as SPL learns patterns from Layer 2 (Foundation Model) responses and reuses them in Layer 1 (Pattern Matching). Pattern reuse percentage represents the proportion of requests handled by Layers 0-1 without requiring foundation model calls.
+
 | Scenario | Daily Cost | Pattern Reuse |
 |----------|-----------|---------------|
 | Day 1 (Learning) | $6.50 | 40% |
 | Day 7 (Optimization) | $2.50 | 75% |
 | Day 30 (Steady State) | $0.50 | 95% |
+
+**Assumptions:**
+- Costs are based on approximately 1000 daily requests
+- Foundation model cost is $0.01 per request
+- Pattern matching cost is $0.001 per request
+- Pattern reuse improves as the system learns from repeated similar requests
 
 ## Performance Metrics
 

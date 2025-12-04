@@ -42,7 +42,26 @@ Pattern matching and caching.
 
 ### `add_pattern(name, regex, category, confidence)`
 
-Add a pattern to Layer 1.
+Add a pattern to Layer 1 for pattern matching.
+
+**Parameters:**
+- `name` (str): Unique identifier for the pattern
+- `regex` (str): Regular expression to match against content
+- `category` (str): Category to assign when pattern matches
+- `confidence` (float): Confidence score for matches (0.0 to 1.0)
+
+**Returns:**
+- None
+
+**Example:**
+```python
+agent.layer1.add_pattern(
+    name='urgent',
+    regex=r'urgent|asap|emergency',
+    category='urgent',
+    confidence=0.95
+)
+```
 
 ## Layer 2: Deliberative
 
