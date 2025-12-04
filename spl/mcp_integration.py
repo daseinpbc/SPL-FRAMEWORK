@@ -107,8 +107,9 @@ class MCPClient:
             else:
                 # Fallback to simulated
                 return self._simulated_reason(content)
-        except Exception as e:
+        except Exception:
             # On error, return simulated response
+            # Errors are expected when model_client is misconfigured or network issues
             return self._simulated_reason(content)
     
     def _simulated_reason(self, content: str) -> MCPResponse:

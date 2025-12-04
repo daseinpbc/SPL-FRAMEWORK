@@ -166,7 +166,7 @@ class SPLAgent:
             return decision
             
         except Exception as e:
-            # Error handling: graceful degradation
+            # Error handling: graceful degradation with error details
             decision = Decision(
                 category='ERROR',
                 method='error_handler',
@@ -174,6 +174,8 @@ class SPLAgent:
                 cost=0.0,
                 layer=0,
             )
+            # Store error details for debugging (can be accessed via decision attributes)
+            decision.error_message = str(e)
             self.cost_tracker.record_result(decision)
             return decision
     

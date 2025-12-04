@@ -17,6 +17,7 @@ Principle: Arkin's "complex behaviors emerge from layered reactive primitives"
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass, field
 from datetime import datetime
+import hashlib
 import re
 
 
@@ -128,8 +129,8 @@ class Layer1Tactical:
         self._match_count += 1
         content_lower = content.lower()
         
-        # Check cache first
-        cache_key = hash(content_lower)
+        # Check cache first (use SHA-256 for reliable cache keys)
+        cache_key = hashlib.sha256(content_lower.encode()).hexdigest()
         if cache_key in self.cache:
             cached = self.cache[cache_key]
             return cached if cached.matched else None
