@@ -512,7 +512,7 @@ SPL builds on decades of foundational research:
 - Pfeiffer and Schier 
 - **Anthropic** — Model Context Protocol (MCP)
 - **The open source community** — Foundation model APIs, MCP protocol, Python ecosystem
-- inspiration from vassar: P&A/K&C long/broude
+- inspiration from vassar: P&A/K&C: Long,Broude,Fish, and Co.
 
   
 
