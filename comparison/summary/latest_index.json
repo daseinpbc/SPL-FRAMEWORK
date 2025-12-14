@@ -1,0 +1,5 @@
+{"runs": [
+  {"method": "spl", "metrics_path": "results/runs/spl_run_20251208_202712/metrics.json"},
+  {"method": "langchain", "metrics_path": "results/runs/langchain_run_20251208_195159/metrics.json"},
+  {"method": "autogen", "metrics_path": "results/runs/autogen_run_20251209_005134/metrics.json"}
+]}

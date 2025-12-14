@@ -1,0 +1,79 @@
+[
+  {
+    "method": "spl",
+    "metrics": {
+      "method": "spl",
+      "dataset_size": 1000,
+      "accuracy": 0.88,
+      "macro_f1": 0.8621529008625783,
+      "avg_latency_ms": 6.655960402393248,
+      "p50_latency_ms": 1.9248329917900264,
+      "p95_latency_ms": 3.215258006821386,
+      "avg_cost_usd_per_email": 1.4129999999999999e-06,
+      "total_cost_usd": 0.0014129999999999998,
+      "total_prompt_tokens": 2183,
+      "total_completion_tokens": 129,
+      "extra": {
+        "layer_usage": {
+          "layer0": 0,
+          "layer1": 986,
+          "layer2": 14,
+          "suppression_rate": 0.986
+        },
+        "l1_suppressed_l2": 986,
+        "budget_remaining_final": null,
+        "tokens_used_final": 2312,
+        "safety_violations_total": 0
+      }
+    },
+    "relative": {
+      "cost_ratio_vs_langchain": 0.014735019917825934,
+      "latency_ratio_vs_langchain": 0.0029777766546941822,
+      "token_savings_vs_langchain": 0.9853197028382754
+    }
+  },
+  {
+    "method": "langchain",
+    "metrics": {
+      "method": "langchain",
+      "dataset_size": 1000,
+      "accuracy": 0.981,
+      "macro_f1": 0.9809570343086589,
+      "avg_latency_ms": 2235.2114259142836,
+      "p50_latency_ms": 210.73629199236166,
+      "p95_latency_ms": 2510.12073544407,
+      "avg_cost_usd_per_email": 9.589399999999999e-05,
+      "total_cost_usd": 0.095894,
+      "total_prompt_tokens": 150490,
+      "total_completion_tokens": 7000,
+      "extra": {}
+    },
+    "relative": {
+      "cost_ratio_vs_langchain": 1.0,
+      "latency_ratio_vs_langchain": 1.0,
+      "token_savings_vs_langchain": 0.0
+    }
+  },
+  {
+    "method": "autogen",
+    "metrics": {
+      "method": "autogen",
+      "dataset_size": 1000,
+      "accuracy": 0.2,
+      "macro_f1": 0.06666666666666668,
+      "avg_latency_ms": 15736.906754251337,
+      "p50_latency_ms": 5299.872750008944,
+      "p95_latency_ms": 51756.04526458192,
+      "avg_cost_usd_per_email": 0.00025090879999999967,
+      "total_cost_usd": 0.25090879999999965,
+      "total_prompt_tokens": 281980,
+      "total_completion_tokens": 102151,
+      "extra": {}
+    },
+    "relative": {
+      "cost_ratio_vs_langchain": 2.616522410161217,
+      "latency_ratio_vs_langchain": 7.040455579191737,
+      "token_savings_vs_langchain": -1.439081846466442
+    }
+  }
+]
