@@ -1,0 +1,14 @@
+{
+  "method": "autogen",
+  "dataset_size": 1000,
+  "accuracy": 0.2,
+  "macro_f1": 0.06666666666666668,
+  "avg_latency_ms": 15736.906754251337,
+  "p50_latency_ms": 5299.872750008944,
+  "p95_latency_ms": 51756.04526458192,
+  "avg_cost_usd_per_email": 0.00025090879999999967,
+  "total_cost_usd": 0.25090879999999965,
+  "total_prompt_tokens": 281980,
+  "total_completion_tokens": 102151,
+  "extra": {}
+}
