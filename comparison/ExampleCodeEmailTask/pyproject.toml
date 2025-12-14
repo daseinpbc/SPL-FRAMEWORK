@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spl-email-poc"
+version = "0.2.0"
+description = "Groq-powered MCP SPL POC comparing layered suppression vs. LangChain and AutoGen baselines."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "POC Team" }]
+dependencies = [
+    "pydantic>=2.7",
+    "pyyaml>=6.0",
+    "requests>=2.32",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "tqdm>=4.66",
+    "langchain-core>=0.3",
+    "groq>=0.4.0",
+    "pyautogen>=0.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["common*", "spl_runner*", "langchain_runner*", "autogen_runner*", "experiments*"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "black>=24.0",
+]
