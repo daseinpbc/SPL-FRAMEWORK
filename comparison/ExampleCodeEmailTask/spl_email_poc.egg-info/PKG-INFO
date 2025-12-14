@@ -1,0 +1,73 @@
+Metadata-Version: 2.4
+Name: spl-email-poc
+Version: 0.2.0
+Summary: Groq-powered MCP SPL POC comparing layered suppression vs. LangChain and AutoGen baselines.
+Author: POC Team
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.7
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: requests>=2.32
+Requires-Dist: matplotlib>=3.8
+Requires-Dist: numpy>=1.26
+Requires-Dist: tqdm>=4.66
+Requires-Dist: langchain-core>=0.3
+Requires-Dist: groq>=0.4.0
+Requires-Dist: pyautogen>=0.2
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4; extra == "dev"
+Requires-Dist: black>=24.0; extra == "dev"
+
+# SPL Email Classification POC
+
+This proof of concept compares three approaches to classifying 1,000 synthetic emails with the same label set:
+- **SPL**: real three-layer SPL framework (validation → pattern reuse → Groq only when needed) with world-state-driven suppression.
+- **LangChain**: single Groq call per email with no shared state.
+- **AutoGen**: two-agent Groq conversation (assistant + reviewer) without suppression.
+
+Outputs include per-email JSONL, run-level metrics, Markdown summaries, and charts to visualize accuracy, latency, token usage, and cost.
+
+## Architecture
+- **Dataset**: Synthetic emails generated from `poc_config/settings.yaml` templates and labels from `poc_config/labels.yaml`.
+- **SPL pipeline**: Uses `spl` from `SPL-FRAMEWORK/`, running Layer 0 (validation), Layer 1 (pattern learning/cache), and Layer 2 (Groq) only when earlier layers cannot decide. The SPL agent is wired to the MCP integration surface (`spl.mcp_integration`) so it can be exposed as an MCP tool without redesign.
+- **Baselines**: LangChain and AutoGen call Groq without shared world state or subsumption, so every email (or conversation turn) uses the model.
+- **Evaluation**: Common schemas and evaluators in `common/`; plotting in `common/plotting.py`. Results land under `results/runs` with aggregated comparisons in `results/summary`.
+
+## Setup
+1. Python 3.11+ recommended.
+2. From `POC/`, create and activate a virtualenv:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -e .
+   ```
+4. Export your Groq API key (no keys are stored in code). Use your own values:
+   ```bash
+   export GROQ_API_KEY="..."
+   ```
+   Model names, env var names, and pricing are all read from `poc_config/providers.yaml`.
+
+## Running experiments
+Datasets generate automatically if `data/processed/emails_1000.jsonl` is missing.
+- Run all pipelines: `python -m experiments.run_all`
+- Summarize latest runs: `python -m experiments.summarize`
+- Generate charts: `python -m experiments.compare`
+
+You can run a single pipeline directly:
+- SPL: `python -m spl_runner.cli`
+- LangChain: `python -m langchain_runner.cli`
+- AutoGen: `python -m autogen_runner.cli`
+
+## Outputs
+- Per-run folders: `results/runs/<method>_run_<timestamp>/` with `per_email.jsonl`, `metrics.json`, and human-readable `explanation.md`.
+- Latest index: `results/summary/latest_index.json` points to the most recent runs.
+- Aggregates: `results/summary/comparison.json` and `results/summary/comparison.md`.
+- Charts: `results/summary/charts/` (latency, cost, tokens, accuracy, SPL layer usage).
+- Cost estimation: Pricing is config-driven (`poc_config/providers.yaml`) and currently uses non-zero rates so cost comparisons reflect relative savings between SPL suppression and the baselines.
+
+Interpretation tips:
+- SPL should avoid many Groq calls thanks to Layer 0/1 suppression, reducing tokens and cost.
+- Baselines issue a model call for every email or conversation turn, so tokens and latency scale linearly.
