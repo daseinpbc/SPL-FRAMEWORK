@@ -1,0 +1,76 @@
+dataset:
+  n_emails: 1000
+  random_seed: 42
+  output_path: "data/processed/emails_1000.jsonl"
+
+synthetic_templates:
+  urgent:
+    subjects:
+      - "URGENT: Action required today"
+      - "Deadline approaching: please respond"
+      - "Immediate assistance needed"
+    bodies:
+      - "We need your decision before 5 PM today regarding the attached proposal."
+      - "Critical incident detected in production. Please review and respond immediately."
+      - "Please confirm deployment approval ASAP to prevent downtime."
+  billing:
+    subjects:
+      - "Invoice for your recent purchase"
+      - "Payment failed: action required"
+      - "Subscription renewal notice"
+    bodies:
+      - "Please find attached your invoice for this month."
+      - "Your recent payment could not be processed. Update your billing details."
+      - "Your plan is renewing next week. Confirm the payment method."
+  newsletter:
+    subjects:
+      - "This week's product newsletter"
+      - "Monthly updates from the team"
+      - "Community highlights you may like"
+    bodies:
+      - "Here are the top stories and releases from this month."
+      - "Enjoy our curated newsletter with tips, events, and product updates."
+      - "Catch up on the latest community discussions and resources."
+  normal:
+    subjects:
+      - "Meeting notes from today"
+      - "Quick question about the report"
+      - "Lunch plans tomorrow?"
+    bodies:
+      - "Sharing the meeting summary and next steps."
+      - "Could you clarify the metrics we used in the analysis?"
+      - "Are you free to grab lunch at noon tomorrow?"
+  spam:
+    subjects:
+      - "Congratulations, you won a prize!"
+      - "Limited time offer on supplements"
+      - "Get rich quick with this investment"
+    bodies:
+      - "Click the link to claim your lottery winnings."
+      - "Exclusive deal on medications, available only today."
+      - "This investment guarantees 10x returns overnight."
+
+evaluation:
+  metrics_output_dir: "results/runs"
+  summary_output_dir: "results/summary"
+
+plotting:
+  charts_dir: "results/summary/charts"
+
+spl:
+  layer0:
+    max_requests_per_window: 100
+    window_seconds: 60
+    blocked_senders: []
+    allowed_domains: []
+  layer1:
+    high_confidence_threshold: 0.85
+    learn_pattern_min_confidence: 0.90
+    min_accuracy_for_use: 0.80
+    pattern_age_max_days: 30
+    require_revalidation: true
+  mcp:
+    reactive_endpoint: "local"
+    tactical_endpoint: "local"
+    deliberative_endpoint: "local"
+    timeout_seconds: 30

@@ -1,0 +1,32 @@
+gemini:
+  base_url: "https://generativelanguage.googleapis.com/v1beta/models"
+  spl: {}
+  langchain: {}
+  autogen: {}
+  pricing: {}
+
+huggingface:
+  base_url: "https://api-inference.huggingface.co/models"
+  spl: {}
+  langchain: {}
+  autogen: {}
+  pricing: {}
+
+groq:
+  base_url: "https://api.groq.com/openai/v1"
+  spl:
+    env_var: GROQ_API_KEY
+    model: llama-3.1-8b-instant
+    max_requests_per_minute: 29
+  langchain:
+    env_var: GROQ_API_KEY
+    model: llama-3.1-8b-instant
+    max_requests_per_minute: 29
+  autogen:
+    env_var: GROQ_API_KEY
+    model: llama-3.1-8b-instant
+    max_requests_per_minute: 29
+  pricing:
+    llama-3.1-8b-instant:
+      input_cost_per_1k_tokens_usd: 0.0006   # placeholder pricing for comparison
+      output_cost_per_1k_tokens_usd: 0.0008  # placeholder pricing for comparison

@@ -1,1 +1,11 @@
-
+labels:
+  - name: urgent
+    description: "Time-sensitive emails requiring same-day response."
+  - name: billing
+    description: "Invoices, payment failures, subscription renewals."
+  - name: newsletter
+    description: "Recurring marketing and informational newsletters."
+  - name: normal
+    description: "Regular work or personal emails with no urgency."
+  - name: spam
+    description: "Unwanted promotional or phishing emails."
