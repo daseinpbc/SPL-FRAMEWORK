@@ -36,4 +36,4 @@ When adding comparison materials:
 
 ---
 
-For questions about comparison methodology, please refer to [CONTRIBUTING.md](../contributing.md).
+For questions about comparison methodology, please refer to [CONTRIBUTING.md](../CONTRIBUTING.md).
