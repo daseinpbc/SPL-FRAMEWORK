@@ -14,15 +14,9 @@ The comparison folder is designed to house:
 
 ## Structure
 
-Organize comparison materials by category:
+Organize comparison materials by agent category: LangChain, SPL, Autogen, etc.
 
-```
-comparison/
-├── benchmarks/          # Performance and cost benchmarks
-├── case-studies/        # Real-world application comparisons
-├── frameworks/          # Comparisons with other agent frameworks
-└── metrics/             # Detailed performance metrics
-```
+
 
 ## Contributing
 
