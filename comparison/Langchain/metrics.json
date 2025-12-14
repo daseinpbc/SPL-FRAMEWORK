@@ -1,0 +1,14 @@
+{
+  "method": "langchain",
+  "dataset_size": 1000,
+  "accuracy": 0.981,
+  "macro_f1": 0.9809570343086589,
+  "avg_latency_ms": 2235.2114259142836,
+  "p50_latency_ms": 210.73629199236166,
+  "p95_latency_ms": 2510.12073544407,
+  "avg_cost_usd_per_email": 9.589399999999999e-05,
+  "total_cost_usd": 0.095894,
+  "total_prompt_tokens": 150490,
+  "total_completion_tokens": 7000,
+  "extra": {}
+}
