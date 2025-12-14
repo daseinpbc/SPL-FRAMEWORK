@@ -1,0 +1,25 @@
+{
+  "method": "spl",
+  "dataset_size": 1000,
+  "accuracy": 0.88,
+  "macro_f1": 0.8621529008625783,
+  "avg_latency_ms": 6.655960402393248,
+  "p50_latency_ms": 1.9248329917900264,
+  "p95_latency_ms": 3.215258006821386,
+  "avg_cost_usd_per_email": 1.4129999999999999e-06,
+  "total_cost_usd": 0.0014129999999999998,
+  "total_prompt_tokens": 2183,
+  "total_completion_tokens": 129,
+  "extra": {
+    "layer_usage": {
+      "layer0": 0,
+      "layer1": 986,
+      "layer2": 14,
+      "suppression_rate": 0.986
+    },
+    "l1_suppressed_l2": 986,
+    "budget_remaining_final": null,
+    "tokens_used_final": 2312,
+    "safety_violations_total": 0
+  }
+}
