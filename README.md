@@ -8,7 +8,7 @@
 
 **A hierarchical multi-agent framework that transforms collections of autonomous AI agents into a self-distilling swarm intelligence through shared collective memory.**
 
-SPL adapts Brooks' subsumption architecture from behavioral robotics to foundation model economics, implementing a formally-defined three-layer hierarchy (Reactive, Tactical, Deliberative) where learned patterns are distilled into a centralized Shared State via explicit inhibition signals.
+SPL adapts Brooks' subsumption architecture from behavioral robotics to foundation model economics, implementing a formally-defined three-layer hierarchy (Reactive, Tactical, Deliberative) where learned patterns are distilled into a centralized Shared State via explicit inhibition signals. Interactive demo: https://spl-demo.vercel.app/
 
 > **Paper:** *Subsumption Pattern Learning: A Formal Framework for Self-Distilling Swarm Intelligence Through Shared Collective Memory* (Cuce, 2026)
 
