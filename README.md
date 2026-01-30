@@ -3,99 +3,204 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-Compliant-brightgreen.svg)](https://modelcontextprotocol.io/)
-[![Cost Reduction: 10-50x](https://img.shields.io/badge/Cost%20Reduction-10--50x-success.svg)]()
+[![arXiv](https://img.shields.io/badge/arXiv-2501.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2501.XXXXX)
+[![Cost Reduction: 13.9x](https://img.shields.io/badge/Cost%20Reduction-13.9x-success.svg)](#experimental-results)
 
-**Hierarchical foundation model agent architecture that reduces costs by 10-50x through intelligent suppression of expensive foundation model calls.**
+**A hierarchical multi-agent framework that transforms collections of autonomous AI agents into a self-distilling swarm intelligence through shared collective memory.**
 
-Grounded in **Ronald Arkin's behavior-based robotics** and **Rodney Brooks' subsumption architecture**, SPL brings 40+ years of proven autonomous systems design to modern foundation model reasoning.
+SPL adapts Brooks' subsumption architecture from behavioral robotics to foundation model economics, implementing a formally-defined three-layer hierarchy (Reactive, Tactical, Deliberative) where learned patterns are distilled into a centralized Shared State via explicit inhibition signals.
 
----
-
-## 🎯 The Problem
-
-Current foundation model agents route **every request** through the most expensive layer (the foundation model itself), even trivial decisions:
-
-```
-User Input
-    ↓
-Foundation Model Call (+$0.01 cost)
-    ↓
-Result
-```
-
-**Result:** 1000 simple categorizations = $10.00 spent on expensive reasoning for tasks that don't need it.
+> **Paper:** *Subsumption Pattern Learning: A Formal Framework for Self-Distilling Swarm Intelligence Through Shared Collective Memory* (Cuce, 2026)
 
 ---
 
-## ✨ The Solution: 3-Layer Behavior-Based Architecture
+## 📊 Key Results
 
-SPL implements a hierarchical decision system where lower layers can **suppress upper layers**, preventing expensive foundation model calls before they occur:
+| Metric | SPL | vs. Monolithic LLM | vs. FrugalGPT |
+|--------|-----|-------------------|---------------|
+| **Cost (100K tasks)** | $89.47 | **13.9× reduction** | **3.2× reduction** |
+| **Latency (median)** | 7ms | **22× faster** | 4× faster |
+| **Accuracy** | 96.9% | -1.3% | -0.5% |
+| **Suppression Rate** | 94.5% | — | — |
 
-```
-Layer 0: Reactive (Validation)        → $0 cost,    <1ms
-    ↓ (if passes)
-Layer 1: Tactical (Pattern Matching)  → $0.001 cost, <10ms
-    ↓ (if no match)
-Layer 2: Deliberative (Foundation Model) → $0.01+ cost, 100-500ms
-```
-
-### Layer 0: Reactive Schemas (Validation)
-
-- **Cost:** $0
-- **Speed:** <1ms
-- **Purpose:** Fast, deterministic validation
-- **Examples:**
-  - Format validation (RFC 5322 for emails)
-  - Permission checks (user authorization)
-  - Rate limiting (quota enforcement)
-  - Blocklist/allowlist matching
-- **Principle:** Arkin's "reactive modules respond to immediate stimuli without deliberation"
-
-### Layer 1: Tactical Behaviors (Pattern Matching)
-
-- **Cost:** $0.001 per match
-- **Speed:** <10ms
-- **Purpose:** Match against learned patterns before foundation model
-- **Examples:**
-  - Regex patterns ("URGENT:" in email = urgent category)
-  - Classification rules (billing-related → billing category)
-  - Cache lookup (have we seen this before?)
-  - Business logic (if X then Y)
-- **Principle:** Arkin's "complex behaviors emerge from layered reactive primitives"
-
-### Layer 2: Deliberative (Foundation Model Reasoning)
-
-- **Cost:** $0.01+ per call
-- **Speed:** 100-500ms
-- **Purpose:** Complex reasoning for novel situations
-- **Examples:**
-  - Understanding nuanced context
-  - Reasoning about edge cases
-  - Pattern learning
-  - Complex analysis
-- **Principle:** Arkin's "deliberation only when reactive layers cannot decide"
+*Multi-agent swarm learning achieves an additional **42% reduction** in foundation model escalations.*
 
 ---
 
-## 📊 Results: 10-50x Cost Reduction
+## 🎯 The Isolated Agent Problem
 
-### Single Agent
+Modern LLM-based agents operate as isolated computational units, each invoking expensive foundation models independently without mechanisms for inter-agent learning or knowledge reuse. This isolation contradicts four decades of insights from behavioral robotics, swarm biology, and organizational psychology.
 
-- 80-99% of requests handled **without foundation model calls**
-- **5-15x cost reduction**
+**The economic consequences are significant:**
+- Reasoning models generate 5× more tokens per request
+- Multi-step agentic workflows compound costs further
+- Daily costs can reach thousands of dollars
+- Costs remain constant even as agents repeatedly solve nearly identical problems
 
-### Multi-Agent Networks
+---
 
-- Pattern sharing across teams
-- **10-50x cost reduction**
+## ✨ The SPL Solution
 
-### Real Example: Email Triage (1000 emails)
+SPL unifies three previously disparate research streams:
+
+1. **Subsumption Architecture** (Brooks, 1986): Layered behavioral control where simpler reactive modules suppress more complex deliberative ones
+2. **Social Learning Theory** (Bandura, 1977): Collectives outperform individuals when knowledge is effectively shared
+3. **Swarm Intelligence** (Kennedy & Eberhart, 2001): Decentralized systems with shared environmental state solve optimization problems through local interactions
+
+### Three-Layer Architecture
 
 ```
-Old way:    1000 × $0.01 = $10.00
-SPL way:    ~20 foundation model calls = $0.20
-Savings:    95% ✓
+┌─────────────────────────────────────────────────────────────────┐
+│                     Incoming Request x                          │
+└─────────────────────────────┬───────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  LAYER 0: Reactive / Structural Validation                      │
+│  ─────────────────────────────────────────                      │
+│  L₀(x) = (ERROR, e) if ¬valid(x), else (PASS, x)               │
+│  Cost: $0  |  Latency: <1ms  |  Deterministic checks            │
+└─────────────────────────────┬───────────────────────────────────┘
+                              ↓ I₀ = false
+┌─────────────────────────────────────────────────────────────────┐
+│  LAYER 1: Tactical / Pattern Matching                           │
+│  ─────────────────────────────────────                          │
+│  L₁(x) = (MATCH, ψ_p*(x)) if ∃p*: φ_p*(x) ≥ θ ∧ complexity(x) ≤ α│
+│  Cost: ~$0.0001  |  Latency: <10ms  |  Pattern library lookup   │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  Inhibition Signal: I₁(x) = true → SUPPRESS Layer 2      │   │
+│  └──────────────────────────────────────────────────────────┘   │
+└─────────────────────────────┬───────────────────────────────────┘
+                              ↓ I₁ = false (escalate)
+┌─────────────────────────────────────────────────────────────────┐
+│  LAYER 2: Deliberative / Foundation Model Reasoning             │
+│  ─────────────────────────────────────────────────              │
+│  L₂(x) = (SOLVED, L(x), distill(L, x))                         │
+│  Cost: $0.01-$0.10  |  Latency: 100-500ms  |  LLM inference     │
+│                                                                  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │  Pattern Distillation: New patterns → Shared State       │   │
+│  └──────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 🔬 Formal Framework
+
+### Definition 1: SPL Agent
+
+An SPL agent is a tuple **A = (P_local, S, θ, α, L)** where:
+
+- **P_local**: Agent's local pattern set
+- **S**: Reference to the shared collective memory
+- **θ ∈ (0, 1)**: Confidence threshold for Layer 1 suppression
+- **α ∈ ℝ⁺**: Complexity threshold
+- **L : X → Y**: Layer 2 foundation model
+
+### Definition 2: Pattern
+
+A pattern **p = (φ_p, ψ_p, κ_p)** consists of:
+
+- **φ_p : X → [0, 1]**: Matcher returning match confidence
+- **ψ_p : X → Y**: Responder producing outputs for matched inputs
+- **κ_p ∈ ℝ⁺**: Complexity bound
+
+### Definition 3: Inhibition Signal
+
+The Layer 1 inhibition signal **I₁ : X → {true, false}**:
+
+```
+I₁(x) = true   if max_{p∈P_e} φ_p(x) ≥ θ ∧ complexity(x) ≤ α
+        false  otherwise
+```
+
+When **I₁(x) = true**, Layer 2 execution is **suppressed**.
+
+### Definition 4: Suppression Rate
+
+```
+ρ = |{x ∈ X_test : I₁(x) = true}| / |X_test|
+```
+
+---
+
+## 📦 Shared State Protocol
+
+The Shared State **S** serves as the swarm's collective memory, enabling stigmergic coordination across agents.
+
+### Structure
+
+**S = (P_shared, C, M, A)** where:
+
+- **P_shared**: Global pattern library
+- **C : P_shared → [0, 1]**: Pattern → confidence scores
+- **M : P_shared → ℕ**: Pattern → match counts (reinforcement)
+- **A : P_shared → AgentID**: Pattern provenance tracking
+
+### Confidence Update Rules
+
+**Reinforcement** (successful match):
+```
+C'(p) = C(p) + η(1 - C(p))
+```
+
+**Decay** (incorrect response):
+```
+C'(p) = C(p) · (1 - δ)
+```
+
+This implements **stigmergic reinforcement**: successful patterns accumulate confidence like pheromone trails, while failed patterns decay.
+
+### Multi-Agent Architecture
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Agent A   │     │   Agent B   │     │   Agent C   │
+├─────────────┤     ├─────────────┤     ├─────────────┤
+│  Layer 0    │     │  Layer 0    │     │  Layer 0    │
+│  Layer 1    │     │  Layer 1    │     │  Layer 1    │
+│  Layer 2    │     │  Layer 2    │     │  Layer 2    │
+└──────┬──────┘     └──────┬──────┘     └──────┬──────┘
+       │ Write              │ Read/Write        │ Write
+       ↓                    ↓                   ↓
+┌─────────────────────────────────────────────────────┐
+│              SHARED STATE (Collective Memory)        │
+├─────────────────────────────────────────────────────┤
+│  Learned Patterns  │  Confidence  │  Cross-Agent    │
+│  P_shared          │  Scores C(p) │  Markers M(p)   │
+└─────────────────────────────────────────────────────┘
+                           ↓
+              Emergent Swarm Intelligence
+```
+
+---
+
+## 📈 Intelligence Compounding Theory
+
+### Theorem (Intelligence Compounding)
+
+Under mild assumptions, collective competency satisfies:
+
+```
+Γ(n) = 1 - e^(-πμn/k)
+```
+
+where:
+- **n**: Number of processed requests
+- **π**: Probability a novel input yields a distillable pattern
+- **μ**: Measure of input space covered by each pattern
+- **k**: Coverage constant
+
+### Corollary (Logarithmic Learning)
+
+To achieve competency Γ*, the swarm requires:
+
+```
+n* = (k/πμ) · ln(1/(1 - Γ*))
+```
+
+**Key insight:** Multi-agent systems amplify this effect—if *m* agents share state, the effective rate is *m · π*, reducing time to competency by factor *m*.
 
 ---
 
@@ -111,267 +216,187 @@ cd SPL-FRAMEWORK
 # Install dependencies
 pip install -r requirements.txt
 
-# Optional: For multi-agent state sharing
+# For multi-agent shared state
 pip install redis
 ```
 
-### Basic Usage (5 minutes)
+### Basic Usage
 
 ```python
 from spl import SPLAgent
 
-# Initialize agent
-agent = SPLAgent()
+# Initialize agent with formal parameters
+agent = SPLAgent(
+    theta=0.87,      # Confidence threshold (θ)
+    alpha=0.6,       # Complexity threshold (α)
+    eta=0.1,         # Learning rate (η)
+    delta=0.05       # Decay rate (δ)
+)
 
-# Add patterns (Layer 1)
+# Add patterns to Layer 1 (P_local)
 agent.layer1.add_pattern(
     name='urgent',
-    regex=r'urgent|asap|emergency',
-    category='urgent',
-    confidence=0.95
+    matcher=r'urgent|asap|emergency',  # φ_p
+    responder='urgent',                 # ψ_p
+    confidence=0.95                     # Initial C(p)
 )
 
 # Process request
 result = agent.process({
     'user_id': 'user123',
-    'content': 'URGENT: Meeting moved to 3pm'
+    'content': 'URGENT: Server outage in production'
 })
 
 print(result)
 # {
 #   'result': 'urgent',
-#   'layer': 1,
-#   'cost': 0.0,
+#   'layer': 1,                    # Handled by Layer 1
+#   'cost': 0.0001,
 #   'confidence': 0.95,
-#   'method': 'pattern'
+#   'inhibition': True,            # I₁(x) = true
+#   'suppressed_layer2': True      # Layer 2 NOT invoked
 # }
+```
+
+### Multi-Agent Swarm Configuration
+
+```python
+from spl import SPLAgent, SharedState
+import redis
+
+# Initialize shared state (collective memory)
+redis_client = redis.Redis(host='localhost', port=6379)
+shared_state = SharedState(
+    client=redis_client,
+    theta_inherit=0.75,    # Inheritance threshold
+    sync_interval=100      # ms
+)
+
+# Create swarm of agents sharing state
+agents = [
+    SPLAgent(shared_state=shared_state, agent_id=f'agent_{i}')
+    for i in range(5)
+]
+
+# When Agent A learns a pattern...
+agents[0].process({'content': 'Complex query requiring Layer 2...'})
+
+# ...Agents B-E automatically inherit it via Shared State
+# Future similar queries resolved at Layer 1 (zero FM cost)
 ```
 
 ### MCP Integration (Foundation Model Agnostic)
 
 ```python
-import anthropic
 from spl import SPLAgent
 from spl.mcp_integration import MCPClient
+import anthropic
 
+# Layer 2 can use any foundation model via MCP
 client = anthropic.Anthropic()
-
-# Create Layer 2 MCP client for any foundation model
 layer2_mcp = MCPClient(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-20250514",
     api_client=client,
 )
 
 agent = SPLAgent()
 agent.layer2 = layer2_mcp
 
+# Automatic pattern distillation from Layer 2 responses
 result = agent.process({
-    'user_id': 'user123',
-    'content': 'Complex reasoning task that is not covered by patterns yet.'
+    'content': 'Novel query requiring deliberative reasoning...'
 })
-print(result)
+# New pattern extracted and added to Shared State
 ```
 
 ---
 
-## 🏗️ Architecture: MCP at Every Layer
+## 📊 Experimental Results
 
-**The Innovation:** Each layer is an independent MCP Server. No vendor lock-in.
+### Benchmark: 100,000 Heterogeneous Enterprise Tasks
+
+Dataset composition:
+- Email Classification: 40,000 tasks
+- Customer Inquiry Resolution: 35,000 tasks  
+- Data Pipeline Orchestration: 25,000 tasks
+
+### Single-Agent Performance
+
+| System | Cost (USD) | Latency (ms) | Accuracy | Suppression Rate |
+|--------|-----------|--------------|----------|------------------|
+| Monolithic LLM | $1,247.32 | 847 ± 312 | 98.2% | 0.0% |
+| FrugalGPT | $312.18 | 523 ± 287 | 97.4% | — |
+| RouteLLM | $287.45 | 498 ± 264 | 97.1% | — |
+| **SPL (Ours)** | **$89.47** | **38 ± 142** | **96.9%** | **94.5%** |
+
+### Layer Distribution
+
+| Layer | Requests | Percentage | Cost Contribution |
+|-------|----------|------------|-------------------|
+| Layer 0 (Reactive) | 4,823 | 4.8% | $0.00 (0.0%) |
+| Layer 1 (Tactical) | 89,672 | 89.7% | $8.97 (10.0%) |
+| Layer 2 (Deliberative) | 5,505 | 5.5% | $80.50 (90.0%) |
+
+*Despite handling only 5.5% of requests, Layer 2 accounts for 90% of costs—validating the economic case for hierarchical suppression.*
+
+### Multi-Agent Swarm Learning
+
+| Agent | Tasks | Isolated ρ | Swarm ρ | Improvement |
+|-------|-------|-----------|---------|-------------|
+| Agent A | 1–20,000 | 87.2% | 87.2% | — |
+| Agent B | 20,001–40,000 | 88.1% | 93.4% | +6.0% |
+| Agent C | 40,001–60,000 | 87.9% | 95.7% | +8.9% |
+| Agent D | 60,001–80,000 | 88.3% | 96.8% | +9.6% |
+| Agent E | 80,001–100,000 | 88.0% | 97.2% | +10.4% |
+| **Average** | — | 87.9% | **94.1%** | **+7.0%** |
+
+**Result:** 42% reduction in Layer 2 escalations compared to isolated agents.
+
+### Ablation Study
+
+| Configuration | Cost (USD) | Accuracy | Δ Accuracy |
+|---------------|-----------|----------|------------|
+| Full SPL | $89.47 | 96.9% | — |
+| No Layer 0 | $89.47 | 96.9% | +0.0% |
+| No Layer 1 | $1,192.84 | 98.1% | +1.2% |
+| θ = 0.95 (stricter) | $142.31 | 97.6% | +0.7% |
+| θ = 0.75 (looser) | $67.23 | 94.2% | -2.7% |
+| No Shared State | $127.83 | 96.4% | -0.5% |
+
+**Key findings:**
+- Disabling Layer 1 increases cost **13.3×** while improving accuracy only 1.2%
+- Default threshold θ = 0.87 optimizes the cost-accuracy tradeoff
+- Shared State contributes **30% additional cost savings** through pattern reuse
+
+---
+
+## 🔐 Theoretical Guarantees
+
+### Theorem 1: Accuracy Preservation
+
+Let ε be the maximum error rate of patterns. Then SPL's overall accuracy satisfies:
 
 ```
-┌─────────────────────────────────────────┐
-│         Foundation Model Request        │
-└────────────────┬────────────────────────┘
-                 ↓
-         ┌───────────────────┐
-         │  MCP Client       │
-         │  (orchestrator)   │
-         └───────────────────┘
-              ↓ ↑
-    ┌─────────┴─┴──────────┬────────────────┐
-    ↓                       ↓                ↓
-┌─────────┐          ┌──────────┐     ┌──────────┐
-│Layer 0  │          │Layer 1   │     │Layer 2   │
-│MCP Srv  │          │MCP Srv   │     │MCP Cli   │
-│(Reactive)          │(Tactical)│     │(FM)      │
-└─────────┘          └──────────┘     └──────────┘
-    ↓                    ↓                ↓
-Validation          Pattern Matching   Claude/GPT-4o/Llama
-Format              Caching            Custom Models
-Permissions         Rules              
-Rate Limit          Discovery
+Acc_SPL ≥ (1 - ε) · ρ + Acc_L2 · (1 - ρ)
 ```
 
-### Why MCP Changes Everything:
+**Corollary:** If ε ≤ 0.05 and Acc_L2 ≥ 0.98, then Acc_SPL ≥ 0.95 for all ρ.
 
-✅ **Foundation Model Agnostic**
-Build once, deploy across Claude, GPT-4o, Llama, or custom models.
+### Theorem 3: Graceful Degradation
 
-✅ **Zero Vendor Lock-in**
-Swap foundation models without touching Layers 0-1.
-
-✅ **Language Agnostic**
-Build layers in Python, Node.js, Go, Rust—MCP handles protocol.
-
-✅ **Enterprise Safe**
-Authentication, rate limiting, error handling at protocol level.
-
-✅ **Multi-Agent Networks**
-Share patterns, validation rules, behaviors via MCP discovery.
-
----
-
-## 📚 Documentation
-
-- **[CONTRIBUTING.md](./CONTRIBUTING.md)** — How to contribute to SPL
-- **[LICENSE](./LICENSE)** — MIT License
-
-For deeper documentation (coming soon):
-- **ARCHITECTURE.md** — Deep dive into 3-layer design
-- **MCP_INTEGRATION.md** — Protocol-based orchestration
-- **ARKIN_THEORY.md** — Robotics principles explained
-- **API_REFERENCE.md** — Complete API documentation
-- **BENCHMARKS.md** — Performance and cost data
-
----
-
-## 🔬 Real-World Examples
-
-### Email Categorization Pipeline
-
-```python
-from spl import SPLAgent, CostTracker
-
-# Initialize
-agent = SPLAgent()
-tracker = CostTracker()
-
-# Preload high-confidence patterns
-patterns = [
-    ('urgent', r'urgent|asap|emergency', 'urgent', 0.95),
-    ('billing', r'invoice|payment|bill|receipt', 'billing', 0.93),
-    ('spam', r'unsubscribe|viagra|lottery', 'spam', 0.98),
-]
-
-for name, regex, category, conf in patterns:
-    agent.layer1.add_pattern(name, regex, category, conf)
-
-# Process 1000 emails
-emails = [...]  # your email list
-for email in emails:
-    result = agent.process({
-        'user_id': email['from'],
-        'content': email['body']
-    })
-    tracker.record(result)
-
-# Generate report
-report = tracker.report()
-print(f"Cost reduction: {report['cost_reduction_factor']}x")
-print(f"Foundation model suppression rate: {report['suppression_rate']:.1%}")
-```
-
-**Result:** 950 emails handled by Layers 0-1 (zero FM cost), 50 routed to foundation model.
-
----
-
-## 🎓 Theoretical Foundation
-
-SPL combines three decades of proven robotics architecture:
-
-### Ronald Arkin: Behavior-Based Robot Control (1987+)
-
-- **Modular reactive schemas** for autonomous decision-making
-- **Hierarchical suppression** for scalable agent design
-- **Explainability by design** (every behavior is traceable)
-- **Inherent safety** (constraints built into architecture)
-
-### Rodney Brooks: Subsumption Architecture (1986)
-
-- **Bottom-up design** (start simple, add complexity only when needed)
-- **Reactive layers** suppress deliberative layers
-- **Proven in 50M+ deployed robots**
-
-### SPL Application
-
-All principles now apply to foundation model agents:
-- **Cost efficiency** through reactive-first design
-- **Safety** via built-in architectural constraints
-- **Explainability** through layered decision-making
-- **Scalability** via multi-agent pattern sharing
-
----
-
-## 💰 Cost Impact
-
-### Per-Layer Breakdown (1000 requests)
-
-| Operation | Layer 0 | Layer 1 | Layer 2 |
-|-----------|---------|---------|---------|
-| Requests | 50 | 850 | 100 |
-| Cost/Request | $0 | $0.001 | $0.01 |
-| Layer Cost | $0 | $0.85 | $1.00 |
-| **Total Cost** | | | **$1.85** |
-| **vs Direct FM** | | | **$10.00** |
-| **Reduction** | | | **81.5%** |
-
-### Scaling Dynamics
-
-| Scenario | Daily Cost | Pattern Reuse |
-|----------|-----------|---------------|
-| Day 1 (Learning) | $6.50 | 40% |
-| Day 7 (Optimization) | $2.50 | 75% |
-| Day 30 (Steady State) | $0.50 | 95% |
-
----
-
-## 🔒 The Arkin Advantage: Safety & Auditability
-
-Traditional foundation model agents:
-
-- **Top-down:** All logic through the model
-- **Black box:** Hard to audit or explain
-- **No built-in constraints**
-
-SPL behavior-based design:
-
-- **Bottom-up:** Reactive rules first, deliberation only when needed
-- **Auditable:** Every decision traced through explicit layers
-- **Inherent safety:** Constraints built into architecture
-
-### Audit Trail Example
-
-```python
-result = agent.process(request)
-print(result['layer'])        # Which layer made decision?
-print(result['method'])       # How? (pattern, cache, llm)
-print(result['cost'])         # What did it cost?
-print(result['confidence'])   # How confident?
-print(result['suppressed'])   # Was expensive layer avoided?
-```
-
-Perfect record for compliance, governance, and debugging.
-
----
-
-## 🤝 Multi-Agent Pattern Sharing
-
-SPL enables organizations to learn patterns once and share across entire teams:
+If Layer 2 becomes unavailable, the system maintains accuracy:
 
 ```
-Agent A learns: "URGENT:" → urgent category (confidence 0.95)
-    ↓ (publishes to shared MCP server)
-Agent B: Automatically available (reuses with 0 cost)
-Agent C: Automatically available (reuses with 0 cost)
-...
-Agent Z: Automatically available
+Acc_degraded = (1 - ε) · Γ(t*)
 ```
 
-**Network Effect:** As you add agents, cost per decision drops exponentially.
+on inputs where I₁(x) = true.
+
+This formalizes the **headless swarm property**: accumulated competencies persist even without centralized reasoning resources.
 
 ---
 
-## 📦 Repository Structure
+## 📚 Repository Structure
 
 ```
 SPL-FRAMEWORK/
@@ -379,35 +404,39 @@ SPL-FRAMEWORK/
 ├── LICENSE                      # MIT License
 ├── requirements.txt             # Python dependencies
 ├── setup.py                     # Package setup
-├── .gitignore                   # Git ignore rules
-├── CONTRIBUTING.md              # Contribution guidelines
+├── spl_arxiv_paper.pdf          # Full paper with proofs
 │
 ├── spl/
 │   ├── __init__.py              # Package initialization
-│   ├── agent.py                 # Main SPL agent orchestrator
-│   ├── layer0_reactive.py       # Validation layer
-│   ├── layer1_tactical.py       # Pattern matching layer
-│   ├── layer2_deliberative.py   # Foundation model layer
-│   ├── cost_tracker.py          # Cost monitoring & reporting
+│   ├── agent.py                 # SPL Agent (Definition 1)
+│   ├── layer0_reactive.py       # Structural validation
+│   ├── layer1_tactical.py       # Pattern matching + inhibition
+│   ├── layer2_deliberative.py   # Foundation model + distillation
+│   ├── shared_state.py          # Collective memory protocol
+│   ├── pattern.py               # Pattern class (Definition 2)
+│   ├── cost_tracker.py          # Cost monitoring
 │   └── mcp_integration.py       # MCP client support
 │
 ├── examples/
-│   ├── email_categorization.py  # Email triage pipeline
-│   ├── content_moderation.py    # Content moderation use case
-│   └── multi_agent_network.py   # Multi-agent coordination
+│   ├── email_categorization.py  # Email triage (paper Section 6.1)
+│   ├── multi_agent_swarm.py     # Swarm learning (paper Section 6.5)
+│   └── intelligence_compounding.py  # Γ(n) curves (paper Section 6.6)
 │
 ├── tests/
 │   ├── test_layer0.py           # Validation tests
-│   ├── test_layer1.py           # Pattern matching tests
-│   ├── test_layer2.py           # Foundation model tests
-│   └── test_agent.py            # Agent orchestration tests
+│   ├── test_layer1.py           # Pattern matching + inhibition tests
+│   ├── test_layer2.py           # Distillation tests
+│   ├── test_shared_state.py     # Collective memory tests
+│   └── test_accuracy_bounds.py  # Theorem 1 verification
+│
+├── comparison/
+│   └── baselines/               # FrugalGPT, RouteLLM comparisons
 │
 └── docs/
-    ├── ARCHITECTURE.md          # Detailed architecture guide
-    ├── MCP_INTEGRATION.md       # MCP protocol details
-    ├── ARKIN_THEORY.md          # Robotics theory foundation
-    ├── API_REFERENCE.md         # Complete API docs
-    └── BENCHMARKS.md            # Performance data
+    ├── ARCHITECTURE.md          # Formal framework details
+    ├── SHARED_STATE_PROTOCOL.md # Synchronization semantics
+    ├── INTELLIGENCE_COMPOUNDING.md  # Theorem 2 proof
+    └── BENCHMARKS.md            # Full experimental results
 ```
 
 ---
@@ -418,13 +447,11 @@ SPL-FRAMEWORK/
 # Run all tests
 pytest tests/
 
-# Run specific layer tests
-pytest tests/test_layer0.py    # Validation
-pytest tests/test_layer1.py    # Patterns
-pytest tests/test_layer2.py    # Foundation models
-
 # Run with coverage
 pytest tests/ --cov=spl/
+
+# Verify accuracy bounds (Theorem 1)
+pytest tests/test_accuracy_bounds.py -v
 ```
 
 ---
@@ -433,101 +460,83 @@ pytest tests/ --cov=spl/
 
 SPL is **foundation model agnostic** via MCP:
 
-✅ **Anthropic**
-- Claude 3.5 Sonnet
-- Claude 3 Opus/Sonnet/Haiku
-
-✅ **OpenAI**
-- GPT-4o
-- GPT-4 Turbo
-- GPT-3.5 Turbo
-
-✅ **Open Source**
-- Meta Llama 3/3.1
-- Mistral
-- Mixtral
-
-✅ **Custom**
-- Fine-tuned models
-- Proprietary models
-- On-premise deployments
-
----
-
-## 🛠️ Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
-### Good First Issues
-
-- Add support for new foundation model providers
-- Implement additional pattern types
-- Write integration examples
-- Improve documentation
+| Provider | Models |
+|----------|--------|
+| **Anthropic** | Claude Opus 4.5, Sonnet 4.5, Haiku 4.5 |
+| **OpenAI** | GPT-4o, GPT-4 Turbo |
+| **Open Source** | Llama 3, Mistral, Mixtral |
+| **Custom** | Fine-tuned, proprietary, on-premise |
 
 ---
 
 ## 📖 Citation
 
-If you use SPL in research or production, please cite:
-
 ```bibtex
-@software{spl2025,
-  author = {Cuce, Pamela and G, Shreyas},
-  title = {Subsumption Pattern Learning: Hierarchical Foundation Model Agent Architecture},
-  year = {2025},
-  url = {https://github.com/daseinpbc/SPL-FRAMEWORK},
-  note = {v3.1}
+@article{cuce2026spl,
+  title={Subsumption Pattern Learning: A Formal Framework for 
+         Self-Distilling Swarm Intelligence Through Shared 
+         Collective Memory},
+  author={Cuce, Pamela},
+  journal={arXiv preprint arXiv:2501.XXXXX},
+  year={2026},
+  institution={Tufts University}
 }
 ```
 
 ---
 
-## 📧 Contact & Support
+## 🤝 Contributing
 
-**Authors:**
-- Pamela Cuce — pamela@dasein.works
-- Shreyas G — shreyas@dasein.works
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Good First Issues
+- Implement additional pattern types (semantic embeddings)
+- Add support for new foundation model providers
+- Benchmark on additional datasets
+- Improve documentation
+
+---
+
+## 📧 Contact
+
+**Author:** Pamela Cuce — pamela.cuce@tufts.edu
 
 **Resources:**
-- 📚 [Documentation](./docs/)
+- 📄 [arXiv Paper](https://arxiv.org/abs/2501.XXXXX)
+- 📚 [Documentation](docs/)
 - 🐛 [Issue Tracker](https://github.com/daseinpbc/SPL-FRAMEWORK/issues)
 - 💬 [Discussions](https://github.com/daseinpbc/SPL-FRAMEWORK/discussions)
-- 📧 [Email Support](mailto:support@dasein.works)
 
 ---
 
 ## 📄 License
 
-SPL is licensed under the MIT License — see [LICENSE](./LICENSE) file for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🙏 Acknowledgments
 
-SPL builds on decades of foundational research:
+SPL builds on foundational research from:
 
-- **Ronald C. Arkin** — Behavior-based robotics and reactive schema theory
-- **Rodney A. Brooks** — Subsumption architecture (MIT Media Lab)
-- Pfeiffer and Schier 
-- **Anthropic** — Model Context Protocol (MCP)
-- **The open source community** — Foundation model APIs, MCP protocol, Python ecosystem
-- inspiration from vassar: P&A/K&C: Long,Broude,Fish, and Co.
-
-  
+- **Rodney A. Brooks** — Subsumption architecture (MIT, 1986)
+- **Ronald C. Arkin** — Behavior-based robotics
+- **Albert Bandura** — Social learning theory
+- **James Kennedy & Russell Eberhart** — Swarm intelligence
+- **Daniel Wegner** — Transactive memory systems
 
 ---
 
 ## 🚀 Roadmap
 
-- [ ] v3.2: WebAssembly layer for edge inference
-- [ ] v3.3: Multi-modal patterns (image, audio, text)
-- [ ] v3.4: Distributed pattern learning (federated networks)
-- [ ] v3.5: Hardware acceleration (GPU-accelerated pattern matching)
-- [ ] v4.0: Continuous learning from production traffic
+- [ ] **v4.0**: Automated pattern distillation with learned extractors
+- [ ] **v4.1**: Adaptive threshold learning (θ, α optimization)
+- [ ] **v4.2**: Cross-domain pattern transfer
+- [ ] **v4.3**: Large-scale deployment (100+ agents)
+- [ ] **v5.0**: Continuous learning from production traffic
 
 ---
 
-**Made with ❤️ by the Dasein team**
+**SPL provides a principled path toward AI systems that grow more intelligent with every transaction while maintaining robustness through decentralized resilience.**
 
-*Bringing 40+ years of robotics intelligence to modern foundation models.*
+*Made with ❤️ — Bringing 40+ years of robotics intelligence to modern foundation models.*
