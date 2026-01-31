@@ -7,10 +7,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="spl-framework",
-    version="3.1.0",
-    author="Pamela Cuce, Shreyas G",
-    author_email="pamela@dasein.works, shreyas@dasein.works",
-    description="Subsumption Pattern Learning: Hierarchical foundation model agent architecture",
+    version="4.0.0",
+    author="Pamela Cuce",
+    author_email="pamela.cuce@tufts.edu",
+    description="Subsumption Pattern Learning: A Formal Framework for Self-Distilling Swarm Intelligence Through Shared Collective Memory",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/daseinpbc/SPL-FRAMEWORK",
@@ -31,6 +31,8 @@ setup(
     install_requires=[
         "anthropic>=0.25.0",
         "pydantic>=2.0.0",
+        "pydantic-settings>=2.0.0",
+        "python-dotenv>=1.0.0",
     ],
     extras_require={
         "dev": [
