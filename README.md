@@ -214,7 +214,7 @@ git clone https://github.com/daseinpbc/SPL-FRAMEWORK.git
 cd SPL-FRAMEWORK
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r "Requirements (2).txt"
 
 # For multi-agent shared state
 pip install redis
@@ -402,9 +402,12 @@ This formalizes the **headless swarm property**: accumulated competencies persis
 SPL-FRAMEWORK/
 ├── README.md                    # This file
 ├── LICENSE                      # MIT License
-├── requirements.txt             # Python dependencies
+├── CHANGELOG.md                 # Version history
+├── Requirements (2).txt         # Python dependencies
 ├── setup.py                     # Package setup
-├── spl_arxiv_paper.pdf          # Full paper with proofs
+├── contributing.md              # Contribution guidelines
+├── spl.pdf                      # Full paper with proofs
+├── spl_demo3.1code.py           # Interactive demo source
 │
 ├── spl/
 │   ├── __init__.py              # Package initialization
@@ -412,31 +415,40 @@ SPL-FRAMEWORK/
 │   ├── layer0_reactive.py       # Structural validation
 │   ├── layer1_tactical.py       # Pattern matching + inhibition
 │   ├── layer2_deliberative.py   # Foundation model + distillation
-│   ├── shared_state.py          # Collective memory protocol
-│   ├── pattern.py               # Pattern class (Definition 2)
 │   ├── cost_tracker.py          # Cost monitoring
 │   └── mcp_integration.py       # MCP client support
 │
 ├── examples/
+│   ├── __init__.py              # Package initialization
 │   ├── email_categorization.py  # Email triage (paper Section 6.1)
-│   ├── multi_agent_swarm.py     # Swarm learning (paper Section 6.5)
-│   └── intelligence_compounding.py  # Γ(n) curves (paper Section 6.6)
+│   ├── content_moderation.py    # Content moderation example
+│   └── multi_agent_network.py   # Multi-agent swarm learning
 │
 ├── tests/
+│   ├── __init__.py              # Package initialization
+│   ├── test_agent.py            # Agent integration tests
 │   ├── test_layer0.py           # Validation tests
 │   ├── test_layer1.py           # Pattern matching + inhibition tests
 │   ├── test_layer2.py           # Distillation tests
-│   ├── test_shared_state.py     # Collective memory tests
-│   └── test_accuracy_bounds.py  # Theorem 1 verification
+│   └── test_cost_tracker.py     # Cost tracking tests
 │
 ├── comparison/
-│   └── baselines/               # FrugalGPT, RouteLLM comparisons
+│   ├── README.md                # Comparison overview
+│   ├── Autogen/                 # AutoGen baseline comparison
+│   ├── Langchain/               # LangChain baseline comparison
+│   ├── ExampleCodeEmailTask/    # Email task comparison code
+│   ├── spl/                     # SPL baseline implementation
+│   ├── charts/                  # Comparison visualizations
+│   └── summary/                 # Comparison summaries
 │
 └── docs/
     ├── ARCHITECTURE.md          # Formal framework details
-    ├── SHARED_STATE_PROTOCOL.md # Synchronization semantics
-    ├── INTELLIGENCE_COMPOUNDING.md  # Theorem 2 proof
-    └── BENCHMARKS.md            # Full experimental results
+    ├── API_REFERENCE.md         # API reference documentation
+    ├── ARKIN_THEORY.md          # Arkin behavior-based robotics theory
+    ├── BENCHMARKS.md            # Full experimental results
+    ├── MCP_INTEGRATION.md       # MCP integration guide
+    ├── spl_arxiv_paper.pdf      # arXiv paper (full)
+    └── *.pdf                    # Additional white papers and guides
 ```
 
 ---
@@ -487,7 +499,7 @@ SPL is **foundation model agnostic** via MCP:
 
 ## 🤝 Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+We welcome contributions! See [contributing.md](contributing.md) for guidelines.
 
 ### Good First Issues
 - Implement additional pattern types (semantic embeddings)
@@ -502,7 +514,7 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 **Author:** Pamela Cuce — pamela.cuce@tufts.edu
 
 **Resources:**
-- 📄 [arXiv Paper](https://arxiv.org/abs/2501.XXXXX)
+- 📄 [arXiv Paper](spl.pdf)
 - 📚 [Documentation](docs/)
 - 🐛 [Issue Tracker](https://github.com/daseinpbc/SPL-FRAMEWORK/issues)
 - 💬 [Discussions](https://github.com/daseinpbc/SPL-FRAMEWORK/discussions)
